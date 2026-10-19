@@ -15,14 +15,15 @@ public:
         return students;
     }
 
-    int findPages(vector<int>& nums,int n,int m){
-        if(m>n)return -1;
+    int splitArray(vector<int>& nums, int k) {
+        int n=nums.size();
+        if(k>n)return -1;
         int low=*max_element(nums.begin(),nums.end());
         int high=accumulate(nums.begin(),nums.end(),0);
         while(low<=high){
             int mid=(low+high)/2;
             int students=count(nums,mid);
-            if(students>m){
+            if(students>k){
                 low=mid+1;
             }
             else{
@@ -30,9 +31,5 @@ public:
             }
         }
         return low;
-    }
-
-    int splitArray(vector<int>& nums, int k) {
-        return findPages(nums,nums.size(),k);
     }
 };
